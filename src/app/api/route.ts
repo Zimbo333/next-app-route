@@ -1,26 +1,9 @@
-// Imports
-// ========================================================
 import { NextResponse, type NextRequest } from "next/server";
 
-// Endpoints
-// ========================================================
-/**
- * Basic GET Request to simuluate LIST in LCRUD
- * @param request
- * @returns
- */
 export const GET = async (request: NextRequest) => {
-  // Return Response
   return NextResponse.json(
     {
-      data: [
-        {
-          id: "45eb616b-7283-4a16-a4e7-2a25acbfdf02",
-          name: "John Doe",
-          email: "john.doe@email.com",
-          createdAt: new Date().toISOString(),
-        },
-      ],
+      message: "Hello World"
     },
     {
       status: 200,
@@ -28,21 +11,20 @@ export const GET = async (request: NextRequest) => {
   );
 };
 
-/**
- * Basic POST Request to simuluate CREATE in LCRUD
- * @param request
- */
 export const POST = async (request: NextRequest) => {
-  // Get JSON payload
-  const data = await request.json();
-
-  // Return Response
-  return NextResponse.json(
-    {
-      data,
-    },
-    {
-      status: 200,
+  const req = await request.json()
+  const weight = parseFloat(req.weight)
+  const height = parseFloat(req.height)
+  const bmi = (weight / (height ** 2)).toFixed(2)
+  
+  console.log(weight)
+  console.log(height)
+  console.log(bmi)
+  return NextResponse.json({
+    body: {
+      weight:weight,
+      height:height,
+      bmi:bmi
     }
-  );
-};
+  })
+}
