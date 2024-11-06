@@ -1,5 +1,4 @@
 "use client"
-import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 
 export default function Home() {
@@ -13,7 +12,7 @@ export default function Home() {
       "Accept": "*/*",
       "User-Agent": "Thunder Client (https://www.thunderclient.com)"
     }
-    let response = await fetch("https://glowing-space-fortnight-qwgjw6q5x992xqgx-3000.app.github.dev/api", {
+    let response = await fetch("https://bookish-space-sniffle-5xqpx59qvqg2wq9-3000.app.github.dev/api", {
       method: "GET",
       headers: headersList
     });
@@ -21,28 +20,22 @@ export default function Home() {
     let data = await response.json();
     console.log(data);
   }
-  const handleFormSubmit = async (e: FormEvent<SubmitEvent>) => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const weight = document.getElementById('w').value
-    const height = document.getElementById('h').value
+    const weight = (document.getElementById("w") as HTMLInputElement).value
+    const height = (document.getElementById("h") as HTMLInputElement).value
     let bodyContent = JSON.stringify({
       "id": 2,
       "weight": weight,
       "height": height
     });
-    let headersList = {
-      "Accept": "*/*",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)"
-    }
-    let response = await fetch("https://glowing-space-fortnight-qwgjw6q5x992xqgx-3000.app.github.dev/api", {
+    let response = await fetch("https://bookish-space-sniffle-5xqpx59qvqg2wq9-3000.app.github.dev/api", {
       method: "POST",
-      headers: headersList,
       body: bodyContent
     });
 
     const data = await response.json()
-    console.log(data.body.bmi)
-    setResult(data.body.bmi)
+    setResult(data.bmi)
   }
   return (
     <div className="flex justify-center items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">

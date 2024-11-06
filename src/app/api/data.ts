@@ -12,6 +12,6 @@ export const products = [
     price: 20,
     description: "Description of Product 2",
     image: "https://via.placeholder.com/150",
-  },// Add more products here
+  },
 ];
 
